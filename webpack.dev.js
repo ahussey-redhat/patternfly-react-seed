@@ -14,14 +14,15 @@ module.exports = merge(common('development'), {
     host: HOST,
     port: PORT,
     historyApiFallback: true,
-    allowedHosts: "all",
-    liveReload: true,
-    hot: false,
-    watchFiles: {
-      paths: ['src/**/*.tsx'],
-      options: {
-        usePolling: false,
-      },
+    allowedHosts: 'all',
+    client: {
+      webSocketURL: 'ws://0.0.0.0:80/ws'
+    },
+    proxy: {
+      '/ws': {
+        target: 'ws://ahussey-aap-catalogue-nodejs.apps.sandbox-m4.g2pi.p1.openshiftapps.com:80/ws',
+        ws: true
+      }
     },
     open: true,
     static: {
